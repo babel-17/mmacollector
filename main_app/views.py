@@ -1,6 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .models import Skill
+from .forms import TrainingForm
 
 # Create your views here.
 def home(request):
@@ -17,8 +18,9 @@ def skills_index(request):
 
 def skills_detail(request, skill_id):
     skill = Skill.objects.get(id=skill_id)
+    training_form = TrainingForm()
     return render(request, 'skills/detail.html', {
-        'skill': skill
+        'skill': skill, 'training_form': training_form
     })
 
 class SkillCreate(CreateView):
@@ -32,3 +34,11 @@ class SkillUpdate(UpdateView):
 class SkillDelete(DeleteView):
     model = Skill
     success_url = '/skills'
+
+def add_training(request, skill_id):
+   form = TrainingForm(request.POST)
+   if form.is_valid():
+        new_training = form.save(commit=False)
+        new_training.skill_id = skill_id
+        new_training.save()
+        return redirect('detail', skill_id=skill_id)
