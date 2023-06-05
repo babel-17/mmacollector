@@ -14,6 +14,10 @@
           <p>Years: Noob</p>
         {% endif %}
       </div>
+      <div class="card-action">
+        <a href="{% url 'skills_update' skill.id %}">Edit</a>
+        <a href="{% url 'skills_delete' skill.id %}">Delete</a>
+      </div>
     </div>
 
 {% endblock %}

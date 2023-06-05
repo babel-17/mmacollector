@@ -15,11 +15,12 @@
     <nav>
       <div class="nav-wrapper">
         <ul>
-          <li><a href="/" class="left brand-logo">&nbsp;&nbsp;MMA Collector</a></li>
+          <li><a href="{% url 'home' %}" class="left brand-logo">&nbsp;&nbsp;MMA Collector</a></li>
         </ul>
         <ul class="right">
-        <li><a href="/about">About</a></li>
-        <li><a href="/skills">View All My Skills</a></li>
+        <li><a href="{% url 'about' %}">About</a></li>
+        <li><a href="{% url 'skills_create' %}">Add a Skill</a></li>
+        <li><a href="{% url 'index' %}">View All My Skills</a></li>
         </ul>
       </div>
     </nav>
