@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>MMA List</h1>
+
+{% for skill in skills %}
+<div class="card">
+    <div class="card-content">
+        <span class="card-title">{{ skill.name }}</span>
+        <p>Style: {{ skill.style }}</p>
+        <p>Description: {{ skill.description }}</p>
+        {% if skill.years > 0 %}
+          <p>Years: {{ skill.years }}</p>
+        {% else %}
+          <p>Years: Noob</p>
+        {% endif %}
+    </div>
+</div>
+{% endfor %}
+
+{% endblock %}
